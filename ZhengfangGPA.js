@@ -6,7 +6,6 @@
 // @author       SomeBottle
 // @match        *://*.edu.cn/*
 // @icon         https://ae01.alicdn.com/kf/Hf7b4a77c0dde45c2b69eb762ddc690236.jpg
-// @require      
 // @grant        none
 // ==/UserScript==
 
