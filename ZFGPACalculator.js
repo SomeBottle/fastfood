@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         整活型GPA计算工具(适用于WHPU正方教务系统)
 // @namespace    https://github.com/SomeBottle/fastfood
-// @version      1.0.2
+// @version      1.0.3
 // @description  在正方教务成绩页面一键计算平均学分绩点(GPA)
 // @author       SomeBottle
 // @match        *://*.edu.cn/*
@@ -15,7 +15,7 @@
     const congratuVidURL = 'https://ae01.alicdn.com/kf/Hc2aa6292d6d4434c9204067e12fa4c2df.jpg',
         popperVidURL = 'https://ae01.alicdn.com/kf/H6de89a79ee6644fcbc83efaaa6edf0ba6.jpg',
         popperAudURL = 'https://ae01.alicdn.com/kf/H90b31944004c48fb9bd38384404ced05N.jpg',
-        congratuAudURL = 'http://music.163.com/song/media/outer/url?id=396696',
+        congratuAudURL = 'https://music.163.com/song/media/outer/url?id=396696',
         countingAudURL = 'https://ae01.alicdn.com/kf/Hbb784b22951a40708d4f1721f68cafb2b.jpg',
         confirmAudURL = 'https://ae01.alicdn.com/kf/H9e546dbd00f84498a5dbd6b9c55cfb42O.jpg',
         objectURLs = {},
