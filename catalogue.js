@@ -6,11 +6,12 @@
 
         - 其中a标签的识别有一定要求：
             1. a标签需要拥有'title'属性来存放这个锚点的标题
-            2. a标签需要有'id'属性用作权重识别，比如：
+            2. a标签需要有for-anchor="true"属性证明用作锚点
+            3. a标签需要有'id'属性用作权重识别，比如：
 
-                <a id="title1" name="title1"></a>
-                <a id="title1-title2" name="title2"></a>
-                <a id="title1-title2-title3" name="title3"></a>  
+                <a id="title1" name="title1" for-anchor="true"></a>
+                <a id="title1-title2" name="title2" for-anchor="true"></a>
+                <a id="title1-title2-title3" name="title3" for-anchor="true"></a>  
 
                渲染出来形如：  
                     title1
@@ -117,10 +118,11 @@ const Catalogue = {
                 priority = priorities[type], // 获得元素权重
                 aTitle = anchorElement.getAttribute('title'), // a标签标题写在title属性里
                 aId = anchorElement.getAttribute('id'),
+                forAnchor=anchorElement.getAttribute('for-anchor'),
                 hTitle = anchorElement.innerText; // h1-h6标题元素标题就在innerText里
             if (!aTitle && hTitle.match(/^\s*$/)) { // 既没有title属性也没有innerText属性，这个元素不是锚点
                 continue; // 跳过
-            } else if (aTitle && aId) { // 如果有title，是a标签
+            } else if (aTitle && aId && forAnchor) { // 如果有title，是a标签
                 let subLevel = aId.split('-').length - 1, // 一个连字符往后推一级
                     level = lastPriority + subLevel + 1; // 小标题的权重
                 if (priority !== 'auto') level = priority; // 如果不是auto就是另有设置了
@@ -190,7 +192,7 @@ const Catalogue = {
             transform: translateX(100%);
             display: none;
             overflow: auto;
-            z-index: 500;
+            z-index: 5000;
             right: 0;
             top: 0;
             width: 40%;
@@ -228,15 +230,15 @@ const Catalogue = {
             top: 0;
             font-size: 2em;
             margin: 0 .5em;
-            z-index: 501;
-            color: #3f3f3f;
-            text-decoration: none;
+            z-index: 5001;
+            color: #3f3f3f!important;
+            text-decoration: none!important;
             transition: .5s ease;
         }
         
         .floatCatalogue .close:hover {
-            color: #888888;
-            text-decoration: underline;
+            color: #888888!important;
+            text-decoration: underline!important;
         }
         
         .floatCatalogue p {
@@ -245,14 +247,14 @@ const Catalogue = {
         }
         
         .floatCatalogue p a {
-            color: #6a6a6a;
-            text-decoration: none;
+            color: #6a6a6a!important;
+            text-decoration: none!important;
             transition: .5s ease;
         }
         
         .floatCatalogue p a:hover {
-            color: #484848;
-            text-decoration: underline;
+            color: #484848!important;
+            text-decoration: underline!important;
         }
         
         @media screen and (max-width: 820px) {
