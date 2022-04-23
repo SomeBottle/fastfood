@@ -225,11 +225,11 @@ const Catalogue = {
         
         .floatCatalogue .close {
             display: block;
-            position: fixed;
+            position: fixed!important;
             right: 0;
             top: 0;
-            font-size: 2em;
-            margin: 0 .5em;
+            font-size: 2em!important;
+            margin: 0 .5em!important;
             z-index: 5001;
             color: #3f3f3f!important;
             text-decoration: none!important;
