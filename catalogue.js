@@ -229,10 +229,12 @@ const Catalogue = {
             right: 0;
             top: 0;
             font-size: 2em!important;
-            margin: 0 .5em!important;
             z-index: 5001;
-            color: #3f3f3f!important;
-            text-decoration: none!important;
+            color: #3f3f3f!important;    
+            cursor: pointer;
+            margin: .2em .3em!important;
+            background-color:transparent!important;
+            border:none!important;
             transition: .5s ease;
         }
         
@@ -263,7 +265,7 @@ const Catalogue = {
             }
         }
         </style>
-        <a href="#" class="close" onclick="Catalogue.close()">×</a>
+        <button class="close" onclick="Catalogue.close()">×</button>
         <div class="head">
             <span class="title">目录</span>
         </div>
