@@ -120,7 +120,7 @@ const Catalogue = {
                 hTitle = anchorElement.innerText; // h1-h6标题元素标题就在innerText里
             if (!aTitle && hTitle.match(/^\s*$/)) { // 既没有title属性也没有innerText属性，这个元素不是锚点
                 continue; // 跳过
-            } else if (aTitle) { // 如果有title，是a标签
+            } else if (aTitle && aId) { // 如果有title，是a标签
                 let subLevel = aId.split('-').length - 1, // 一个连字符往后推一级
                     level = lastPriority + subLevel + 1; // 小标题的权重
                 if (priority !== 'auto') level = priority; // 如果不是auto就是另有设置了
