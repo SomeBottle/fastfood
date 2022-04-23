@@ -6,10 +6,8 @@
 
         - 其中a标签的识别有一定要求：
             1. a标签需要拥有'title'属性来存放这个锚点的标题
-            2. a标签需要有for-anchor="true"属性证明用作锚点
-            3. a标签需要有'id'属性用作权重识别，比如：
+            2. a标签需要有'id'属性用作权重识别，比如：
 
-                <a id="title1" name="title1" for-anchor="true"></a>
                 <a id="title1-title2" name="title2" for-anchor="true"></a>
                 <a id="title1-title2-title3" name="title3" for-anchor="true"></a>  
 
@@ -87,8 +85,8 @@ const Catalogue = {
             console.log('[Somebottle\'s Catalogue] Catalogue not exist.');
         }
     },
-    init: function (element, types = ['h2', 'h3', 'h4', 'a']) {
-        if (!(element instanceof Element)) {
+    init: function (target, types = ['h2', 'h3', 'h4', 'a']) {
+        if (!(target instanceof Element)) {
             console.log('[Somebottle\'s Catalogue] Please specify the container element of the post.');
             return false;
         }
@@ -111,14 +109,14 @@ const Catalogue = {
                 return a[1] - b[1];
             }
         });
-        let elements = document.querySelectorAll(types.join(','));
+        let elements = target.querySelectorAll(types.join(','));
         for (let j = 0, len = elements.length; j < len; j++) {
             let anchorElement = elements[j],
                 type = anchorElement.tagName.toLowerCase(),
                 priority = priorities[type], // 获得元素权重
                 aTitle = anchorElement.getAttribute('title'), // a标签标题写在title属性里
                 aId = anchorElement.getAttribute('id'),
-                forAnchor=anchorElement.getAttribute('for-anchor'),
+                forAnchor = anchorElement.getAttribute('for-anchor'),
                 hTitle = anchorElement.innerText; // h1-h6标题元素标题就在innerText里
             if (!aTitle && hTitle.match(/^\s*$/)) { // 既没有title属性也没有innerText属性，这个元素不是锚点
                 continue; // 跳过
@@ -176,7 +174,7 @@ const Catalogue = {
         this.reindent(anchors);
         this.anchors = anchors; // 储存锚点
         let rendered = '',
-            div = document.createElement('div'); // 创建一个div，用于渲染目录
+            cataTarget = document.getElementById('catalogueContainer');
         for (let i = 0, len = anchors.length; i < len; i++) {
             let anchor = anchors[i],
                 indent = 10 + (anchor[2] - maxPriority) * 20, // 根据权重计算缩进
@@ -184,9 +182,11 @@ const Catalogue = {
                 fontSize = testSize > 0 ? testSize : 0.2;
             rendered += `<p style="margin-left:${indent}px;font-size:${fontSize}em"><a href="javascript:void(0);" cata-id="${i}" onclick="Catalogue.jump(this);">${anchor[0]}</a></p>`;
         }
-        div.className = 'floatCatalogue';
-        div.id = 'catalogueContainer';
-        div.innerHTML = `<style>
+        if (!cataTarget) {
+            let div = document.createElement('div'); // 创建一个div，用于渲染目录
+            div.className = 'floatCatalogue';
+            div.id = 'catalogueContainer';
+            div.innerHTML = `<style>
         .floatCatalogue {
             position: fixed;
             transform: translateX(100%);
@@ -270,6 +270,9 @@ const Catalogue = {
         <div class="content">
             ${rendered}
         </div>`;
-        element.appendChild(div);
+            target.appendChild(div);
+        } else {
+            cataTarget.querySelector('.content').innerHTML = rendered;
+        }
     }
 };
