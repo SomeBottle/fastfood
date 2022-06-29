@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         整活型GPA计算工具(适用于WHPU正方教务系统)
 // @namespace    https://github.com/SomeBottle/fastfood
-// @version      1.0.4
+// @version      1.1.0
 // @license      MIT
 // @description  在正方教务成绩页面一键计算平均学分绩点(GPA)
 // @author       SomeBottle
@@ -191,6 +191,36 @@
             }, 50);
         });
     }
+    function injectCourseProperty() {
+        // 2022.6.29 介入课程性质，可以手动将选修改必修，必修改选修
+        let tdElems = document.querySelectorAll("tbody > tr > td[aria-describedby=tabGrid_kcxzmc]"),
+            delayTime = 100;
+        if (tdElems.length <= 0) return false; // 当前没有任何成绩项目
+        GPANotice('点击课程性质单元格可以将课程性质切换为必修或选修哟~', 2500);
+        for (let i of tdElems) {
+            i.classList.add('coursePropertyTd'); // 给所有课程性质列添加class
+            i.onclick = function (e) {
+                let self = e.target,
+                    selfText = self.innerText;
+                if (self.innerText.includes('必修')) { // 点击就能改变课程性质
+                    self.innerText = selfText.replace('必修', '选修');
+                } else if (self.innerText.includes('选修')) {
+                    self.innerText = selfText.replace('选修', '必修');
+                }
+            };
+            // 闪烁动画
+            ((cell) => {
+                setTimeout(() => {
+                    applyStyle(i, {
+                        'animation': '1s cellFlash',
+                        'animation-fill-mode': 'none',
+                        'animation-iteration-count': '1'
+                    })
+                }, delayTime);
+            })(i);
+            delayTime += 200;
+        }
+    }
     async function countingAnimation(pointStr) { // 动画效果
         console.log('Start counting.');
         let drumAudio = document.createElement('audio'), // 小军鼓音频
@@ -211,6 +241,7 @@
             finalTp = pointStr.replaceAll(/\./g, ''), // 最终去除小数点的GPA字符串
             currentTp = zeroFiller(finalTp.length), // 当前去除小数点的GPA字符串
             pointer = currentTp.length - 1, // 下标指针
+            // S0meBOtt1e
             playEnded = () => {
                 drumAudio.removeEventListener('ended', playEnded, false);
                 drumAudio.currentTime = 0;
@@ -327,14 +358,14 @@
             popperVideo.currentTime = 0;
         }, 500);
     }
-    window.GPANotice = function (txt) { // 弹出提示窗口
+    window.GPANotice = function (txt, stay = 1500) { // 弹出提示窗口(提示文字，停留时间)
         let popElem = S('GPANotice');
         popElem.innerHTML = txt;
         popElem.style.transform = 'none';
         clearInterval(window.GPATimer);
         window.GPATimer = setTimeout(() => {
             popElem.style.transform = 'translateY(-100%)';
-        }, 1500);
+        }, stay);
     }
     /*渲染HTML元素*/
     let GPADiv = document.createElement('div');
@@ -445,6 +476,28 @@
 .closeBtn:hover{
     text-decoration: none;
 }
+.coursePropertyTd{
+    transition:.5s ease;
+}
+.coursePropertyTd:hover{
+    cursor: pointer;
+    color: #FFF;
+    background-color: rgb(0, 79, 255, 0.5);
+}
+@keyframes cellFlash{
+    0%{
+        background-color: initial;
+        color:black;
+    }
+    50%{
+        background-color: rgb(255, 56, 0, 0.5);
+        color: #FFF;
+    }
+    100%{
+        background-color: initial;
+        color:black;
+    }
+}
 @keyframes bouncy{
     0%{
         transform: scale(1);
@@ -512,4 +565,13 @@
     <audio id="popperAudio"></audio>
 </div>`;
     document.body.appendChild(GPADiv); // 渲染到页面上
+    const observeOpts = {
+        childList: true
+    }; // 节点观察配置
+    const tableObserver = new MutationObserver((mutations) => {
+        injectCourseProperty(); // 刷新表格时也重新介入课程性质
+    });
+    tableObserver.observe(document.querySelector('#tabGrid > tbody'), observeOpts); // 观察表格变化
+    console.log("GPA celebration script loaded, enjoy it!");
+    console.log("By SomeBottle");
 })();
