@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         整活型GPA计算工具(适用于WHPU正方教务系统)
 // @namespace    https://github.com/SomeBottle/fastfood
-// @version      1.1.0
+// @version      1.1.1
 // @license      MIT
 // @description  在正方教务成绩页面一键计算平均学分绩点(GPA)
 // @author       SomeBottle
@@ -138,35 +138,35 @@
                 for (let td of tdElems) {
                     switch (td.getAttribute('aria-describedby')) {
                         case 'tabGrid_kcmc': // 课程名称
-                            currentObj['courseName'] = td.innerText;
+                            currentObj["courseName"] = td.innerText;
                             break;
                         case 'tabGrid_kch': // 课程号
-                            currentObj['courseCode'] = td.innerText;
+                            currentObj["courseCode"] = td.innerText;
                             break;
                         case 'tabGrid_kcxzmc': // 课程性质
-                            currentObj['courseChr'] = td.innerText;
+                            currentObj["courseChr"] = td.innerText;
                             break;
                         case 'tabGrid_xf': // 学分
-                            currentObj['credit'] = parseFloat(td.innerText);
+                            currentObj["credit"] = parseFloat(td.innerText);
                             break;
                         case 'tabGrid_cj': // 成绩
-                            currentObj['score'] = parseFloat(td.innerText);
+                            currentObj["score"] = parseFloat(td.innerText);
                             break;
                         case 'tabGrid_jd': // 绩点
-                            currentObj['gradePoint'] = parseFloat(td.innerText);
+                            currentObj["gradePoint"] = parseFloat(td.innerText);
                             break;
                         case 'tabGrid_xfjd': // 学分绩点
-                            currentObj['creditPoint'] = parseFloat(td.innerText);
+                            currentObj["creditPoint"] = parseFloat(td.innerText);
                             break;
                         case 'tabGrid_kcbj': // 课程标记
-                            currentObj['courseMark'] = td.innerText;
+                            currentObj["courseMark"] = td.innerText;
                             break;
                     }
                 }
                 rows.push(currentObj);
             });
-            let rowsCompulsory = rows.myFilter((row) => row['courseChr'].includes('必修')),
-                rowsElective = rows.myFilter(row => row['courseChr'].includes('选修')),
+            let rowsCompulsory = rows.myFilter((row) => row["courseChr"].includes('必修')),
+                rowsElective = rows.myFilter(row => row["courseChr"].includes('选修')),
                 GPAResults = {
                     'all': GPACalc(rows), // 注意GPACalc返回值是字符串
                     'compulsory': GPACalc(rowsCompulsory),
