@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         整活型GPA计算工具(适用于WHPU正方教务系统)
 // @namespace    https://github.com/SomeBottle/fastfood
-// @version      1.1.1
+// @version      1.1.2
 // @license      MIT
 // @description  在正方教务成绩页面一键计算平均学分绩点(GPA)
 // @author       SomeBottle
@@ -86,6 +86,7 @@
             popperAudio = S('popperAudio'),
             pointSpan = S('finalGPA'),
             mainAudio = S('mainAudio'),
+            floatPage = S('GPAFloat'),
             afterAnimation = () => {
                 pointSpan.removeEventListener('animationend', afterAnimation, false);
                 applyStyle(pointSpan, {
@@ -101,10 +102,21 @@
         mainVideo.src = await extractMedia(congratuVidURL);
         popperVideo.src = await extractMedia(popperVidURL, 'video/webm');
         popperAudio.src = await extractMedia(popperAudURL, 'audio/wav');
-        mainVideo.play();
-        popperVideo.play();
-        mainAudio.play();
-        popperAudio.play();
+        // 2022.6.30注：实际上媒体元素的play方法会返回Promise对象，如果成功了会resolve，失败了则reject
+        mainVideo.play().then(res => { // js自动播放成功
+            popperVideo.play();
+            mainAudio.play();
+            popperAudio.play();
+        }, rej => { // 如果自动播放失败，就需要用户手动操作
+            GPANotice("媒体自动播放失败，请点击一下屏幕中央");
+            floatPage.onclick = (e) => {
+                mainVideo.play();
+                popperVideo.play();
+                mainAudio.play();
+                popperAudio.play();
+                floatPage.onclick = null; // 取消事件监听
+            }
+        })
     }
     // Polyfill End
     function collectMyGPA() {
