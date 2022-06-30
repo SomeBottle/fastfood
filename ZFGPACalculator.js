@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         整活型GPA计算工具(适用于WHPU正方教务系统)
 // @namespace    https://github.com/SomeBottle/fastfood
-// @version      1.1.2
+// @version      1.1.3
 // @license      MIT
 // @description  在正方教务成绩页面一键计算平均学分绩点(GPA)
 // @author       SomeBottle
@@ -108,7 +108,7 @@
             mainAudio.play();
             popperAudio.play();
         }, rej => { // 如果自动播放失败，就需要用户手动操作
-            GPANotice("媒体自动播放失败，请点击一下屏幕中央");
+            GPANotice("媒体自动播放失败，请点击一下屏幕中央", 2500);
             floatPage.onclick = (e) => {
                 mainVideo.play();
                 popperVideo.play();
@@ -389,7 +389,7 @@
     top:0;
     width:100%;
     height:100%;
-    z-index:3000;
+    z-index:5000;
     display:none;
     opacity:0;
     background-color: rgba(255,255,255,0.5);
@@ -405,7 +405,7 @@
     position:fixed;
     left:0;
     top:0;
-    z-index:3001;
+    z-index:5001;
     width:100%;
     height:100%;
 }
@@ -436,7 +436,7 @@
     font-size: 1.5em;
     font-weight: bold;
     transition: .5s ease;
-    z-index:1000;
+    z-index:8000;
     transform: translateY(-100%);
 }
 .GPAOptions{
@@ -477,7 +477,7 @@
 }
 .closeBtn{
     position: fixed;
-    z-index: 3002;
+    z-index: 5002;
     right: 0;
     top: 0;
     font-size: 3em;
