@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         整活型GPA计算工具(适用于WHPU正方教务系统)
 // @namespace    https://github.com/SomeBottle/fastfood
-// @version      1.1.4
+// @version      1.1.5
 // @license      MIT
 // @description  在正方教务成绩页面一键计算平均学分绩点(GPA)
 // @author       SomeBottle
@@ -13,12 +13,12 @@
 (function () {
     'use strict';
     var GPAs = false;
-    const congratuVidURL = 'https://ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/congratulations.png',
-        popperVidURL = 'https://ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/popper.png',
-        popperAudURL = 'https://ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/boom.png',
+    const congratuVidURL = 'https://somebottle.gitee.io/bottlecos/whpugpa/congratulations.png',
+        popperVidURL = 'https://somebottle.gitee.io/bottlecos/whpugpa/popper.png',
+        popperAudURL = 'https://somebottle.gitee.io/bottlecos/whpugpa/boom.png',
         congratuAudURL = 'https://music.163.com/song/media/outer/url?id=396696',
-        countingAudURL = 'https://ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/snareDrum.png',
-        confirmAudURL = 'https://ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/noticeSound1.png',
+        countingAudURL = 'https://somebottle.gitee.io/bottlecos/whpugpa/snareDrum.png',
+        confirmAudURL = 'https://somebottle.gitee.io/bottlecos/whpugpa/noticeSound1.png',
         objectURLs = {},
         applyStyle = (elemArr, styleObj) => { // 批量应用样式
             elemArr = Array.isArray(elemArr) ? elemArr : [elemArr]; // 支持单一元素
