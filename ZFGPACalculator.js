@@ -13,12 +13,12 @@
 (function () {
     'use strict';
     var GPAs = false;
-    const congratuVidURL = 'https://ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/congratulations.png',
-        popperVidURL = 'https://ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/popper.png',
-        popperAudURL = 'https://ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/boom.png',
+    const congratuVidURL = 'https://mirror.ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/congratulations.png',
+        popperVidURL = 'https://mirror.ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/popper.png',
+        popperAudURL = 'https://mirror.ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/boom.png',
         congratuAudURL = 'https://music.163.com/song/media/outer/url?id=396696',
-        countingAudURL = 'https://ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/snareDrum.png',
-        confirmAudURL = 'https://ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/noticeSound1.png',
+        countingAudURL = 'https://mirror.ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/snareDrum.png',
+        confirmAudURL = 'https://mirror.ghproxy.com/https://raw.githubusercontent.com/SomeBottle/fastfood/main/media/whpuGPA/noticeSound1.png',
         objectURLs = {},
         applyStyle = (elemArr, styleObj) => { // 批量应用样式
             elemArr = Array.isArray(elemArr) ? elemArr : [elemArr]; // 支持单一元素
