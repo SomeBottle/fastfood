@@ -175,6 +175,8 @@
         });
         resizeObserver.observe(body);
         element.addEventListener('mouseover', runAway, false);
+        element.addEventListener('touchstart', runAway, false);
+        element.addEventListener('click', runAway, false);
         element.addEventListener('transitionend', finishMoving, false);
         if (localStorage['kaomoji_night_mode'] === undefined) {
             localStorage['kaomoji_night_mode'] = 'false';
