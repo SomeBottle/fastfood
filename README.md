@@ -8,7 +8,10 @@
 
 ## 脚本目录
 
-* [生成文章页面的简单目录（非油猴脚本）](catalogue.js)  
+* [生成文章页面的简单目录（非油猴脚本）](catalogue.js)
+
+* [重新用 `$$` 和 `$` 包裹数学公式（油猴脚本）](https://github.com/SomeBottle/fastfood/blob/main/formulaRewrapper.js)
+  * 主要用于大模型生成的带公式文本。  
 
 * [整活型GPA计算工具(适用于WHPU正方教务系统)](#整活型gpa计算工具)
 
