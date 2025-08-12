@@ -16,7 +16,7 @@
 
 * [整活型GPA计算工具(适用于WHPU正方教务系统)](#整活型gpa计算工具)
 
-* [AutoDL JupyterLab URL 复制按钮（油猴脚本）]
+* [AutoDL JupyterLab URL 复制按钮（油猴脚本）](#autodl-jupyterlab-url-复制按钮)  
 
 ## 页面目录
 
