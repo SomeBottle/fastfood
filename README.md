@@ -36,5 +36,6 @@
 
 > 通过拦截页面中 `XMLHttpRequest` 的响应来实现，因为 AutoDL 会轮询一个 `/api/v1/instance` 接口来更新列表信息。如果没有按钮可以尝试刷新一下实例列表。  
 
-* [autodl-jupyterlab-url-copier.js](./autodl-jupyterlab-url-copier.js)  
+* [autodl-jupyterlab-url-copier.js](./autodl-jupyterlab-url-copier.js)
+* [GreasyFork 页面](https://greasyfork.org/zh-CN/scripts/545633-autodl-jupyterlab-url-copier)  
 
