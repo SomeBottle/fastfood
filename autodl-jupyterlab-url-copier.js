@@ -2,7 +2,7 @@
 // @name         AutoDL JupyterLab URL Copier
 // @namespace    https://gist.github.com/SomeBottle
 // @version      2025-08-12
-// @description  Copy JupyterLab URL from AutoDL instance console
+// @description  在 AutoDL 控制台实例列表显示 JupyterLab URL 复制按钮
 // @author       SomeBottle
 // @match        https://www.autodl.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=autodl.com
