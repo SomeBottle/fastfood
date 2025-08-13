@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AutoDL JupyterLab URL Copier
-// @namespace    https://gist.github.com/SomeBottle
-// @version      2025-08-12
+// @namespace    https://github.com/SomeBottle/fastfood
+// @version      2025-08-13
 // @description  在 AutoDL 控制台实例列表显示 JupyterLab URL 复制按钮
 // @author       SomeBottle
 // @match        https://www.autodl.com/*
@@ -96,9 +96,9 @@
             searchNodes(document.body);
             for (let insId in instanceId2Url) {
                 let insNode = instanceId2Node[insId];
-                // data-modified 用于防止元素重复添加
-                if (insNode && insNode.getAttribute('data-modified') != "true") {
-                    insNode.setAttribute('data-modified', 'true');
+                let copyBtnId = `jupyter-url-copy-btn-${insId}`;
+                // 防止元素重复添加
+                if (insNode && document.getElementById(copyBtnId) === null) {
                     // 在这个结点的后面添加一个复制 URL 的按钮
                     let copyBtn = document.createElement('a');
                     copyBtn.innerText = '复制 JupyterLab URL';
@@ -112,6 +112,7 @@
                         }, 1200);
                     };
                     copyBtn.classList.add('jupyter-url-copy-btn');
+                    copyBtn.id = copyBtnId;
                     sentryNode = copyBtn;
                     insNode.parentNode.insertAdjacentElement('afterend', copyBtn);
                     console.log(`${SCRIPT_PREFIX} Added copy button of the instance: ${insId}`);
