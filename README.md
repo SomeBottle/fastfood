@@ -21,7 +21,7 @@
 
 * （油猴脚本）[AutoDL JupyterLab URL 复制按钮](#21-autodl-jupyterlab-url-复制按钮)  
 
-* （油猴脚本）[arXiv 页面展示 alphaXiv 链接和点赞数](./scripts/kaomoji.js)   
+* （油猴脚本）[arXiv 页面展示 alphaXiv 链接和点赞数](#22-alphaxiv-链接和点赞数展示脚本)   
 
 ### 1.1. 页面目录
 
@@ -59,7 +59,11 @@
 
 简单的小脚本，在 arXiv **搜索列表**和**摘要页面**展示对应的 alphaXiv 链接和点赞数，论文受欢迎程度一目了然。  
 
-> 鉴于没有观察到有获取点赞数的接口 (alphaXiv 采用了服务端渲染)，目前通过匹配和提取 alphaXiv 页面中的 `upvotes_count` 字段来实现点赞数的获取。   
+> 鉴于没有观察到有获取点赞数的接口 (alphaXiv 采用了服务端渲染)，目前通过匹配和提取 alphaXiv 页面中的 `upvotes_count` 字段来实现点赞数的获取。多个点赞数获取请求为串行发送，没有进入视图的条目不会请求点赞数 (惰性)。  
+
+* [alphaXivLinkAndLikeForArXiv.js](./scripts/alphaXivLinkAndLikeForArXiv.js)
+* [GreasyFork 页面](https://greasyfork.org/zh-CN/scripts/561682-alphaxiv-link-like-for-arxiv)  
+
 
 
 
