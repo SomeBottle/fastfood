@@ -19,7 +19,7 @@
     const SCRIPT_PREFIX = '[alphaXiv Link & Like]';
     const ARXIV_ID_REGEX = /arxiv\.org\/.+?\/([^\s]+)/i;
     const ALPHAXIV_BASE_URL = 'https://www.alphaxiv.org';
-    const LIKE_COUNT_REGEX = /upvotes_count\s*?:\s*?(\d+)/i;
+    const LIKE_COUNT_REGEX = /publicTotalVotes\s*?:\s*?(\d+)/i;
     const STYLE_SHEET = `
         @keyframes spin {
             from { transform: rotate(0deg); }
