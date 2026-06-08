@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         alphaXiv Link & Like for arXiv
 // @namespace    https://github.com/SomeBottle/fastfood
-// @version      0.0.1
+// @version      0.0.2
 // @description  Add alphaXiv link and like info to arXiv search results and abstract pages.
 // @author       SomeBottle
 // @match        https://*.arxiv.org/abs/*
